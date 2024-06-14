@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\EventsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('events', [EventsController::class, 'addEvent']);
+Route::put('events/{eventId}', [EventsController::class, 'updateEvent']);
+Route::get('events', [EventsController::class, 'listEvents']);
+Route::get('events/schedule', [EventsController::class, 'getSchedule']);
+Route::delete('events/{eventId}', [EventsController::class, 'deleteEvent']);
